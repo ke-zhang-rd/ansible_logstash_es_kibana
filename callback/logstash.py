@@ -126,8 +126,8 @@ class CallbackModule(CallbackBase):
             self.handler = logstash.TCPLogstashHandler(
                 self.ls_server,
                 self.ls_port,
-                version=1,
-                message_type=self.ls_type
+                version=1
+                #message_type=self.ls_type
             )
 
             self.logger.addHandler(self.handler)
@@ -181,6 +181,7 @@ class CallbackModule(CallbackBase):
         data['status'] = "OK"
         data['ansible_playbook'] = playbook._file_name
         self.logger.info("START PLAYBOOK | " + data['ansible_playbook'], extra=data)
+        print(data)
 
     def v2_playbook_on_stats(self, stats):
         end_time = datetime.utcnow()
